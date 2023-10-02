@@ -80,6 +80,34 @@ df_trash_wheel = read_excel("./data/trash_wheel.xlsx")
   )
 ```
 
+Read and clean the Professor Trash Wheel sheet:
+
+```{r}
+df_prof_wheel = read_excel("./data/trash_wheel.xlsx") 
+  sheet = "Professor Trash Wheel"
+  janitor::clean_names(df_prof_wheel)
+  names(df_prof_wheel)
+  drop_na(df_prof_wheel) |> 
+  mutate(homes_powered = (weight_tons*500)/30,
+    trash_wheel = "Trash Wheel 2"
+  )
+```
+
+Read and clean the Gwynnda Trash Wheel
+
+```{r}
+df_gwynn_wheel = read_excel("./data/trash_wheel.xlsx") 
+  sheet = "Gwynnda Trash Wheel"
+  janitor::clean_names(df_gwynn_wheel)
+  names(df_gwynn_wheel)
+  drop_na(df_gwynn_wheel) |> 
+  mutate(homes_powered = (weight_tons*500)/30,
+    trash_wheel = "Trash Wheel 3"
+  )
+```
+
+
+
 
 
 
