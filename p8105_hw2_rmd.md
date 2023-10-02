@@ -1,5 +1,6 @@
 Homework 2
 ================
+Pavithra Srinivasan
 October 2, 2023
 
 ``` r
@@ -125,3 +126,64 @@ str(data_538)
     ##  $ month_abb   : chr [1:822] "Jan" "Feb" "Mar" "Apr" ...
     ##  $ close       : num [1:822] NA NA NA NA NA NA NA NA NA NA ...
     ##  $ unemployment: num [1:822] NA NA NA NA NA NA NA NA NA NA ...
+
+### Problem 2
+
+Read and clean the Mr. Trash Wheel sheet:
+
+``` r
+df_trash_wheel = read_excel("./data/trash_wheel.xlsx") 
+```
+
+    ## New names:
+    ## • `` -> `...15`
+    ## • `` -> `...16`
+
+``` r
+  janitor::clean_names(df_trash_wheel)
+```
+
+    ## # A tibble: 548 × 16
+    ##    dumpster month year  date                weight_tons volume_cubic_yards
+    ##       <dbl> <chr> <chr> <dttm>                    <dbl>              <dbl>
+    ##  1        1 May   2014  2014-05-16 00:00:00        4.31                 18
+    ##  2        2 May   2014  2014-05-16 00:00:00        2.74                 13
+    ##  3        3 May   2014  2014-05-16 00:00:00        3.45                 15
+    ##  4        4 May   2014  2014-05-17 00:00:00        3.1                  15
+    ##  5        5 May   2014  2014-05-17 00:00:00        4.06                 18
+    ##  6        6 May   2014  2014-05-20 00:00:00        2.71                 13
+    ##  7        7 May   2014  2014-05-21 00:00:00        1.91                  8
+    ##  8        8 May   2014  2014-05-28 00:00:00        3.7                  16
+    ##  9        9 June  2014  2014-06-05 00:00:00        2.52                 14
+    ## 10       10 June  2014  2014-06-11 00:00:00        3.76                 18
+    ## # ℹ 538 more rows
+    ## # ℹ 10 more variables: plastic_bottles <dbl>, polystyrene <dbl>,
+    ## #   cigarette_butts <dbl>, glass_bottles <dbl>, grocery_bags <dbl>,
+    ## #   chip_bags <dbl>, sports_balls <dbl>, homes_powered <dbl>, x15 <lgl>,
+    ## #   x16 <lgl>
+
+``` r
+  names(df_trash_wheel)
+```
+
+    ##  [1] "Dumpster"             "Month"                "Year"                
+    ##  [4] "Date"                 "weight_tons"          "Volume (cubic yards)"
+    ##  [7] "Plastic Bottles"      "Polystyrene"          "Cigarette Butts"     
+    ## [10] "Glass Bottles"        "Grocery Bags"         "Chip Bags"           
+    ## [13] "Sports Balls"         "Homes Powered*"       "...15"               
+    ## [16] "...16"
+
+``` r
+  drop_na(df_trash_wheel) |> 
+  mutate(homes_powered = (weight_tons*500)/30,
+    trash_wheel = "Trash Wheel 1"
+  )
+```
+
+    ## # A tibble: 0 × 18
+    ## # ℹ 18 variables: Dumpster <dbl>, Month <chr>, Year <chr>, Date <dttm>,
+    ## #   weight_tons <dbl>, Volume (cubic yards) <dbl>, Plastic Bottles <dbl>,
+    ## #   Polystyrene <dbl>, Cigarette Butts <dbl>, Glass Bottles <dbl>,
+    ## #   Grocery Bags <dbl>, Chip Bags <dbl>, Sports Balls <dbl>,
+    ## #   Homes Powered* <dbl>, ...15 <lgl>, ...16 <lgl>, homes_powered <dbl>,
+    ## #   trash_wheel <chr>

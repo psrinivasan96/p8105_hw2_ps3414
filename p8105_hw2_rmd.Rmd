@@ -1,16 +1,14 @@
 ---
 title: "Homework 2"
+author: Pavithra Srinivasan
 output: github_document
 date: "October 2, 2023"
 ---
-
-
 
 ```{r load_libraries}
 library(tidyverse)
 library(readxl)
 ```
-
 
 ### Problem 1
 
@@ -59,9 +57,29 @@ unemployment =
 
 Now we merge the three datasets!
 
-```{r merge_538}
+```{r}
 data_538 = 
   left_join(pols, snp) |>
   left_join(x = _, y = unemployment)
 
 str(data_538)
+```
+
+### Problem 2
+
+Read and clean the Mr. Trash Wheel sheet:
+
+```{r}
+df_trash_wheel = read_excel("./data/trash_wheel.xlsx") 
+  janitor::clean_names(df_trash_wheel)
+  names(df_trash_wheel)
+  drop_na(df_trash_wheel) |> 
+  mutate(homes_powered = (weight_tons*500)/30,
+    trash_wheel = "Trash Wheel 1"
+  )
+```
+
+
+
+
+
