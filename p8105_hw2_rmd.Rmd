@@ -71,6 +71,7 @@ Read and clean the Mr. Trash Wheel sheet:
 
 ```{r}
 df_trash_wheel = read_excel("./data/trash_wheel.xlsx") 
+  sheet = "Mr. Trash Wheel"
   janitor::clean_names(df_trash_wheel)
   names(df_trash_wheel)
   drop_na(df_trash_wheel) |> 

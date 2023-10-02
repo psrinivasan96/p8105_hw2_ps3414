@@ -140,6 +140,7 @@ df_trash_wheel = read_excel("./data/trash_wheel.xlsx")
     ## • `` -> `...16`
 
 ``` r
+  sheet = "Mr. Trash Wheel"
   janitor::clean_names(df_trash_wheel)
 ```
 
