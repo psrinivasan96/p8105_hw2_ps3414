@@ -76,7 +76,7 @@ df_trash_wheel = read_excel("./data/trash_wheel.xlsx")
   names(df_trash_wheel)
   drop_na(df_trash_wheel) |> 
   mutate(homes_powered = (weight_tons*500)/30,
-    trash_wheel = "Trash Wheel 1"
+    trash_wheel = "Trash_1"
   )
 ```
 
@@ -89,7 +89,7 @@ df_prof_wheel = read_excel("./data/trash_wheel.xlsx")
   names(df_prof_wheel)
   drop_na(df_prof_wheel) |> 
   mutate(homes_powered = (weight_tons*500)/30,
-    trash_wheel = "Trash Wheel 2"
+    trash_wheel = "Trash_2"
   )
 ```
 
@@ -102,8 +102,34 @@ df_gwynn_wheel = read_excel("./data/trash_wheel.xlsx")
   names(df_gwynn_wheel)
   drop_na(df_gwynn_wheel) |> 
   mutate(homes_powered = (weight_tons*500)/30,
-    trash_wheel = "Trash Wheel 3"
+    trash_wheel = "Trash_3"
   )
+```
+
+Tidying and Combining all 3 datasets into one. 
+
+```{r}
+df_combined_trash = 
+  bind_rows(df_trash_wheel, df_prof_wheel, df_gwynn_wheel)
+```
+
+Description: The combination of these 3 datasets inform us how much trash was collected all together between Mr. Trash Wheel, Professor Trash wheel and Gwynnda Trash Wheel. 
+
+### Problem 3
+
+Read and clean the MCI data set:
+
+```{r}
+df_MCI_baseline = 
+  read_csv("./data/MCI_baseline.csv", skip = 1) %>% 
+  janitor::clean_names() %>% 
+  mutate(
+    sex = case_match(
+      sex, 1 ~ "male", 0 ~ "female"),
+    apoe4 = case_match(
+      apoe4, 1 ~ "carrier", 0 ~ "non_carrier"),
+  )
+    filter(df_MCI_baseline, age_at_onset != ".")
 ```
 
 

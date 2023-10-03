@@ -177,7 +177,7 @@ df_trash_wheel = read_excel("./data/trash_wheel.xlsx")
 ``` r
   drop_na(df_trash_wheel) |> 
   mutate(homes_powered = (weight_tons*500)/30,
-    trash_wheel = "Trash Wheel 1"
+    trash_wheel = "Trash_1"
   )
 ```
 
@@ -237,7 +237,7 @@ df_prof_wheel = read_excel("./data/trash_wheel.xlsx")
 ``` r
   drop_na(df_prof_wheel) |> 
   mutate(homes_powered = (weight_tons*500)/30,
-    trash_wheel = "Trash Wheel 2"
+    trash_wheel = "Trash_2"
   )
 ```
 
@@ -297,7 +297,7 @@ df_gwynn_wheel = read_excel("./data/trash_wheel.xlsx")
 ``` r
   drop_na(df_gwynn_wheel) |> 
   mutate(homes_powered = (weight_tons*500)/30,
-    trash_wheel = "Trash Wheel 3"
+    trash_wheel = "Trash_3"
   )
 ```
 
@@ -308,3 +308,58 @@ df_gwynn_wheel = read_excel("./data/trash_wheel.xlsx")
     ## #   Grocery Bags <dbl>, Chip Bags <dbl>, Sports Balls <dbl>,
     ## #   Homes Powered* <dbl>, ...15 <lgl>, ...16 <lgl>, homes_powered <dbl>,
     ## #   trash_wheel <chr>
+
+Tidying and Combining all 3 datasets into one.
+
+``` r
+df_combined_trash = 
+  bind_rows(df_trash_wheel, df_prof_wheel, df_gwynn_wheel)
+```
+
+Description: The combination of these 3 datasets inform us how much
+trash was collected all together between Mr. Trash Wheel, Professor
+Trash wheel and Gwynnda Trash Wheel.
+
+### Problem 3
+
+Read and clean the MCI data set:
+
+``` r
+df_MCI_baseline = 
+  read_csv("./data/MCI_baseline.csv", skip = 1) %>% 
+  janitor::clean_names() %>% 
+  mutate(
+    sex = case_match(
+      sex, 1 ~ "male", 0 ~ "female"),
+    apoe4 = case_match(
+      apoe4, 1 ~ "carrier", 0 ~ "non_carrier"),
+  )
+```
+
+    ## Rows: 483 Columns: 6
+    ## ── Column specification ────────────────────────────────────────────────────────
+    ## Delimiter: ","
+    ## chr (1): Age_ at_ onset
+    ## dbl (5): ID, Current Age, Sex, Education, apoe4
+    ## 
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+``` r
+    filter(df_MCI_baseline, age_at_onset != ".")
+```
+
+    ## # A tibble: 97 × 6
+    ##       id current_age sex    education apoe4       age_at_onset
+    ##    <dbl>       <dbl> <chr>      <dbl> <chr>       <chr>       
+    ##  1     3        62.5 male          16 carrier     66.8        
+    ##  2     5        66   male          16 non_carrier 68.7        
+    ##  3     7        66.5 male          18 non_carrier 74          
+    ##  4    13        63.1 male          12 carrier     69          
+    ##  5    14        58.4 female        20 non_carrier 66.2        
+    ##  6    18        67.8 male          16 non_carrier 69.8        
+    ##  7    22        67.3 female        20 carrier     74.6        
+    ##  8    26        64.8 female        20 carrier     71.1        
+    ##  9    30        66.3 female        12 non_carrier 73.1        
+    ## 10    39        68.3 female        16 carrier     70.2        
+    ## # ℹ 87 more rows
