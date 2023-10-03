@@ -67,7 +67,7 @@ str(data_538)
 
 ### Problem 2
 
-Read and clean the Mr. Trash Wheel sheet:
+Read in and clean the Mr. Trash Wheel sheet:
 
 ```{r}
 df_trash_wheel = read_excel("./data/trash_wheel.xlsx") 
@@ -80,7 +80,7 @@ df_trash_wheel = read_excel("./data/trash_wheel.xlsx")
   )
 ```
 
-Read and clean the Professor Trash Wheel sheet:
+Read in and clean the Professor Trash Wheel sheet:
 
 ```{r}
 df_prof_wheel = read_excel("./data/trash_wheel.xlsx") 
@@ -93,7 +93,7 @@ df_prof_wheel = read_excel("./data/trash_wheel.xlsx")
   )
 ```
 
-Read and clean the Gwynnda Trash Wheel
+Read in and clean the Gwynnda Trash Wheel sheet: 
 
 ```{r}
 df_gwynn_wheel = read_excel("./data/trash_wheel.xlsx") 
@@ -106,7 +106,7 @@ df_gwynn_wheel = read_excel("./data/trash_wheel.xlsx")
   )
 ```
 
-Tidying and Combining all 3 datasets into one. 
+Tidying and Combining all 3 datasets into one:
 
 ```{r}
 df_combined_trash = 
@@ -117,7 +117,7 @@ Description: The combination of these 3 datasets inform us how much trash was co
 
 ### Problem 3
 
-Read and clean the MCI data set:
+READ, TIDY AND COMBINE THE MCI BASELINE AND AMYLOID DATASETS:
 
 ```{r}
 df_MCI_baseline = 
@@ -130,34 +130,61 @@ df_MCI_baseline =
       apoe4, 1 ~ "carrier", 0 ~ "non_carrier"),
   )
     filter(df_MCI_baseline, age_at_onset != ".")
+
+df_MCI_amyloid = 
+  read_csv("./data/mci_amyloid.csv", skip = 1) %>%
+  janitor::clean_names() %>% 
+  mutate(id = `study_id`) %>% 
+  select(-study_id)
+  drop_na(df_MCI_amyloid)
+  
+
+df_MCI_combined = 
+  inner_join(df_MCI_baseline, df_MCI_amyloid)
+  nrow(df_MCI_combined)
+  drop_na(df_MCI_combined)
+
+write.csv(df_MCI_combined, file = "results/df_MCI_combined.csv")
 ```
 
 DISCUSSION QUESTIONS: 
 
-Total participants recruited? =  483
+1. Total participants recruited? =  483
 
-
-Of these participants how many developed MCI?
+2. Of these participants how many developed MCI?
 ```{r}
 filter(df_MCI_baseline, age_at_onset != ".")
 ```
-Of the participants recruited, 97 developed MCI. 
+3. Of the participants recruited, 97 developed MCI. 
 
 
-Avg. Baseline age?
+4. Avg. Baseline age?
 ```{r}
 mean(pull(df_MCI_baseline, current_age))
 ```
-65.04679
+= 65.04679
 
 
-What proportion of women are APOE4 carriers?
+5. What proportion of women are APOE4 carriers?
 ```{r}
 filter(df_MCI_baseline, sex != "male", apoe4 != "non_carrier")
 ```
 Filtering the male and non-carriers out yield a total number of 63 women who are APOE4 carriers. 
 
 
+6. Comment on the steps on the import process and the features of the Amyloid dataset:
+Read in and cleaned the overall data set. Conditionally mutated the "study id" variable so it can correspond to the participants of the data set. Then the "NA" values were dropped to create a cohesive dataframe.
+
+
+7. Check whether some participants appear in only the baseline or amyloid datasets, and comment on your findings. Combine the demographic and biomarker datasets so that only participants who appear in both datasets are retained, and briefly describe the resulting dataset; export the result as a CSV to your data directory:
+
+Creating a consistent ID variable for both datasets and then combining them yields only those who are in both datasets. There are 337 participants in both after tidying up the data. 
+
+Exporting the result: 
+
+```{r}
+write.csv(df_MCI_combined, file = "results/df_MCI_combined.csv")
+```
 
 
 

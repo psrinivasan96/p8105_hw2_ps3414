@@ -129,7 +129,7 @@ str(data_538)
 
 ### Problem 2
 
-Read and clean the Mr. Trash Wheel sheet:
+Read in and clean the Mr. Trash Wheel sheet:
 
 ``` r
 df_trash_wheel = read_excel("./data/trash_wheel.xlsx") 
@@ -189,7 +189,7 @@ df_trash_wheel = read_excel("./data/trash_wheel.xlsx")
     ## #   Homes Powered* <dbl>, ...15 <lgl>, ...16 <lgl>, homes_powered <dbl>,
     ## #   trash_wheel <chr>
 
-Read and clean the Professor Trash Wheel sheet:
+Read in and clean the Professor Trash Wheel sheet:
 
 ``` r
 df_prof_wheel = read_excel("./data/trash_wheel.xlsx") 
@@ -249,7 +249,7 @@ df_prof_wheel = read_excel("./data/trash_wheel.xlsx")
     ## #   Homes Powered* <dbl>, ...15 <lgl>, ...16 <lgl>, homes_powered <dbl>,
     ## #   trash_wheel <chr>
 
-Read and clean the Gwynnda Trash Wheel
+Read in and clean the Gwynnda Trash Wheel sheet:
 
 ``` r
 df_gwynn_wheel = read_excel("./data/trash_wheel.xlsx") 
@@ -309,7 +309,7 @@ df_gwynn_wheel = read_excel("./data/trash_wheel.xlsx")
     ## #   Homes Powered* <dbl>, ...15 <lgl>, ...16 <lgl>, homes_powered <dbl>,
     ## #   trash_wheel <chr>
 
-Tidying and Combining all 3 datasets into one.
+Tidying and Combining all 3 datasets into one:
 
 ``` r
 df_combined_trash = 
@@ -322,7 +322,7 @@ Trash wheel and Gwynnda Trash Wheel.
 
 ### Problem 3
 
-Read and clean the MCI data set:
+READ, TIDY AND COMBINE THE MCI BASELINE AND AMYLOID DATASETS:
 
 ``` r
 df_MCI_baseline = 
@@ -364,11 +364,84 @@ df_MCI_baseline =
     ## 10    39        68.3 female        16 carrier     70.2        
     ## # ℹ 87 more rows
 
+``` r
+df_MCI_amyloid = 
+  read_csv("./data/mci_amyloid.csv", skip = 1) %>%
+  janitor::clean_names() %>% 
+  mutate(id = `study_id`) %>% 
+  select(-study_id)
+```
+
+    ## Rows: 487 Columns: 6
+    ## ── Column specification ────────────────────────────────────────────────────────
+    ## Delimiter: ","
+    ## chr (5): Baseline, Time 2, Time 4, Time 6, Time 8
+    ## dbl (1): Study ID
+    ## 
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+``` r
+  drop_na(df_MCI_amyloid)
+```
+
+    ## # A tibble: 347 × 6
+    ##    baseline    time_2      time_4      time_6      time_8         id
+    ##    <chr>       <chr>       <chr>       <chr>       <chr>       <dbl>
+    ##  1 0.107481183 0.109157373 0.109457839 0.105729713 0.10661845      2
+    ##  2 0.109251358 0.108699686 0.110540386 0.107476797 0.111212209     4
+    ##  3 0.107950408 0.112273883 0.115139677 0.106606054 0.106052066     5
+    ##  4 0.112426974 0.112853415 0.11143945  0.110279277 0.114982747     6
+    ##  5 0.109119335 0.109316496 0.1114037   0.108586573 0.108993335    11
+    ##  6 0.112042298 0.114167481 0.109859682 0.106842794 0.107334106    12
+    ##  7 0.110300505 0.108534417 0.108100808 0.109229662 0.104861901    13
+    ##  8 0.110218888 0.113741328 0.111101474 0.108852437 0.109556166    16
+    ##  9 0.108399246 0.113317542 0.105909034 0.107196914 0.110199133    17
+    ## 10 0.114137255 0.107093264 0.110872562 0.108982605 0.106873903    18
+    ## # ℹ 337 more rows
+
+``` r
+df_MCI_combined = 
+  inner_join(df_MCI_baseline, df_MCI_amyloid)
+```
+
+    ## Joining with `by = join_by(id)`
+
+``` r
+  nrow(df_MCI_combined)
+```
+
+    ## [1] 475
+
+``` r
+  drop_na(df_MCI_combined)
+```
+
+    ## # A tibble: 337 × 11
+    ##       id current_age sex    education apoe4  age_at_onset baseline time_2 time_4
+    ##    <dbl>       <dbl> <chr>      <dbl> <chr>  <chr>        <chr>    <chr>  <chr> 
+    ##  1     2        65.6 female        20 carri… .            0.10748… 0.109… 0.109…
+    ##  2     4        69.8 female        16 non_c… .            0.10925… 0.108… 0.110…
+    ##  3     5        66   male          16 non_c… 68.7         0.10795… 0.112… 0.115…
+    ##  4     6        62.5 male          16 non_c… .            0.11242… 0.112… 0.111…
+    ##  5    11        69.5 female        16 non_c… .            0.10911… 0.109… 0.111…
+    ##  6    12        66.2 female        18 non_c… .            0.11204… 0.114… 0.109…
+    ##  7    13        63.1 male          12 carri… 69           0.11030… 0.108… 0.108…
+    ##  8    16        64.9 female        16 non_c… .            0.11021… 0.113… 0.111…
+    ##  9    17        65   female        18 non_c… .            0.10839… 0.113… 0.105…
+    ## 10    18        67.8 male          16 non_c… 69.8         0.11413… 0.107… 0.110…
+    ## # ℹ 327 more rows
+    ## # ℹ 2 more variables: time_6 <chr>, time_8 <chr>
+
+``` r
+write.csv(df_MCI_combined, file = "results/df_MCI_combined.csv")
+```
+
 DISCUSSION QUESTIONS:
 
-Total participants recruited? = 483
+1.  Total participants recruited? = 483
 
-Of these participants how many developed MCI?
+2.  Of these participants how many developed MCI?
 
 ``` r
 filter(df_MCI_baseline, age_at_onset != ".")
@@ -389,9 +462,9 @@ filter(df_MCI_baseline, age_at_onset != ".")
     ## 10    39        68.3 female        16 carrier     70.2        
     ## # ℹ 87 more rows
 
-Of the participants recruited, 97 developed MCI.
+3.  Of the participants recruited, 97 developed MCI.
 
-Avg. Baseline age?
+4.  Avg. Baseline age?
 
 ``` r
 mean(pull(df_MCI_baseline, current_age))
@@ -399,9 +472,9 @@ mean(pull(df_MCI_baseline, current_age))
 
     ## [1] 65.04679
 
-65.04679
+= 65.04679
 
-What proportion of women are APOE4 carriers?
+5.  What proportion of women are APOE4 carriers?
 
 ``` r
 filter(df_MCI_baseline, sex != "male", apoe4 != "non_carrier")
@@ -424,3 +497,26 @@ filter(df_MCI_baseline, sex != "male", apoe4 != "non_carrier")
 
 Filtering the male and non-carriers out yield a total number of 63 women
 who are APOE4 carriers.
+
+6.  Comment on the steps on the import process and the features of the
+    Amyloid dataset: Read in and cleaned the overall data set.
+    Conditionally mutated the “study id” variable so it can correspond
+    to the participants of the data set. Then the “NA” values were
+    dropped to create a cohesive dataframe.
+
+7.  Check whether some participants appear in only the baseline or
+    amyloid datasets, and comment on your findings. Combine the
+    demographic and biomarker datasets so that only participants who
+    appear in both datasets are retained, and briefly describe the
+    resulting dataset; export the result as a CSV to your data
+    directory:
+
+Creating a consistent ID variable for both datasets and then combining
+them yields only those who are in both datasets. There are 337
+participants in both after tidying up the data.
+
+Exporting the result:
+
+``` r
+write.csv(df_MCI_combined, file = "results/df_MCI_combined.csv")
+```
