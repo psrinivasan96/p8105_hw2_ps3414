@@ -363,3 +363,64 @@ df_MCI_baseline =
     ##  9    30        66.3 female        12 non_carrier 73.1        
     ## 10    39        68.3 female        16 carrier     70.2        
     ## # ℹ 87 more rows
+
+DISCUSSION QUESTIONS:
+
+Total participants recruited? = 483
+
+Of these participants how many developed MCI?
+
+``` r
+filter(df_MCI_baseline, age_at_onset != ".")
+```
+
+    ## # A tibble: 97 × 6
+    ##       id current_age sex    education apoe4       age_at_onset
+    ##    <dbl>       <dbl> <chr>      <dbl> <chr>       <chr>       
+    ##  1     3        62.5 male          16 carrier     66.8        
+    ##  2     5        66   male          16 non_carrier 68.7        
+    ##  3     7        66.5 male          18 non_carrier 74          
+    ##  4    13        63.1 male          12 carrier     69          
+    ##  5    14        58.4 female        20 non_carrier 66.2        
+    ##  6    18        67.8 male          16 non_carrier 69.8        
+    ##  7    22        67.3 female        20 carrier     74.6        
+    ##  8    26        64.8 female        20 carrier     71.1        
+    ##  9    30        66.3 female        12 non_carrier 73.1        
+    ## 10    39        68.3 female        16 carrier     70.2        
+    ## # ℹ 87 more rows
+
+Of the participants recruited, 97 developed MCI.
+
+Avg. Baseline age?
+
+``` r
+mean(pull(df_MCI_baseline, current_age))
+```
+
+    ## [1] 65.04679
+
+65.04679
+
+What proportion of women are APOE4 carriers?
+
+``` r
+filter(df_MCI_baseline, sex != "male", apoe4 != "non_carrier")
+```
+
+    ## # A tibble: 63 × 6
+    ##       id current_age sex    education apoe4   age_at_onset
+    ##    <dbl>       <dbl> <chr>      <dbl> <chr>   <chr>       
+    ##  1     1        63.1 female        16 carrier .           
+    ##  2     2        65.6 female        20 carrier .           
+    ##  3    22        67.3 female        20 carrier 74.6        
+    ##  4    26        64.8 female        20 carrier 71.1        
+    ##  5    34        64.8 female        16 carrier .           
+    ##  6    39        68.3 female        16 carrier 70.2        
+    ##  7    43        67.1 female        16 carrier 71.6        
+    ##  8    47        66.1 female        12 carrier .           
+    ##  9    50        67.6 female        18 carrier .           
+    ## 10    52        63.2 female        16 carrier .           
+    ## # ℹ 53 more rows
+
+Filtering the male and non-carriers out yield a total number of 63 women
+who are APOE4 carriers.

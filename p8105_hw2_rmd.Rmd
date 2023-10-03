@@ -132,7 +132,30 @@ df_MCI_baseline =
     filter(df_MCI_baseline, age_at_onset != ".")
 ```
 
+DISCUSSION QUESTIONS: 
 
+Total participants recruited? =  483
+
+
+Of these participants how many developed MCI?
+```{r}
+filter(df_MCI_baseline, age_at_onset != ".")
+```
+Of the participants recruited, 97 developed MCI. 
+
+
+Avg. Baseline age?
+```{r}
+mean(pull(df_MCI_baseline, current_age))
+```
+65.04679
+
+
+What proportion of women are APOE4 carriers?
+```{r}
+filter(df_MCI_baseline, sex != "male", apoe4 != "non_carrier")
+```
+Filtering the male and non-carriers out yield a total number of 63 women who are APOE4 carriers. 
 
 
 
