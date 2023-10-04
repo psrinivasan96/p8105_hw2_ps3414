@@ -115,13 +115,9 @@ df_combined_trash =
 
 PROBLEM 2 DISCUSSION:
 
-This data shows us a combination of all the trash collected between the 3 datasets. Also tells us how much total weight of trash was collected by Mr. Trash Wheel, Professor Trash Wheel and the Gwynnda Trash Wheel collectively. Additionally, it also shows all the different material that was collected. 
+This data shows us a combination of all the trash collected between the 3 datasets. Also tells us how much total weight of trash was collected by Mr. Trash Wheel, Professor Trash Wheel and the Gwynnda Trash Wheel collectively. Additionally, it also shows all the different material that was collected such as polystrene, cigarette butts, glass bottles, plastic bags, wrappers and sport balls. There was a total of `r nrow(df_combined_trash)` observations in the combined data set, with `r ncol(df_combined_trash)` key variables. Other key information gained from this data: 
 
-1. Number of observations in the resulting dataset: `r nrow(df_combined_trash)`
-
-2. Number of key variables: `r ncol(df_combined_trash)`
-
-3. Total weight collected by Professor Trash wheel: `r sum(df_prof_wheel$weight_tons)`
+Total weight collected by Professor Trash wheel = `r sum(df_prof_wheel$weight_tons)`
 
 
 ### Problem 3

@@ -322,13 +322,12 @@ This data shows us a combination of all the trash collected between the
 3 datasets. Also tells us how much total weight of trash was collected
 by Mr. Trash Wheel, Professor Trash Wheel and the Gwynnda Trash Wheel
 collectively. Additionally, it also shows all the different material
-that was collected.
+that was collected such as polystrene, cigarette butts, glass bottles,
+plastic bags, wrappers and sport balls. There was a total of 1755
+observations in the combined data set, with 16 key variables. Other key
+information gained from this data:
 
-1.  Number of observations in the resulting dataset: 1755
-
-2.  Number of key variables: 16
-
-3.  Total weight collected by Professor Trash wheel: 3750.2
+Total weight collected by Professor Trash wheel = 3750.2
 
 ### Problem 3
 
