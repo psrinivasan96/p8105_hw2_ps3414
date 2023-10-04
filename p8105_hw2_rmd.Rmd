@@ -113,13 +113,25 @@ df_combined_trash =
   bind_rows(df_trash_wheel, df_prof_wheel, df_gwynn_wheel)
 ```
 
-Description: The combination of these 3 datasets inform us how much trash was collected all together between Mr. Trash Wheel, Professor Trash wheel and Gwynnda Trash Wheel. 
+PROBLEM 2 DISCUSSION:
+
+This data shows us a combination of all the trash collected between the 3 datasets. Also tells us how much total weight of trash was collected by Mr. Trash Wheel, Professor Trash Wheel and the Gwynnda Trash Wheel collectively. Additionally, it also shows all the different material that was collected. 
+
+1. Number of observations in the resulting dataset: `r nrow(df_combined_trash)`
+
+2. Number of key variables: `r ncol(df_combined_trash)`
+
+3. Total weight collected by Professor Trash wheel: `r sum(df_prof_wheel$weight_tons)`
+
 
 ### Problem 3
 
 READ, TIDY AND COMBINE THE MCI BASELINE AND AMYLOID DATASETS:
 
 ```{r}
+
+## Cleaning: deleted the first row, changed the sex and apoe variables into non-numerical and removed NA. 
+
 df_MCI_baseline = 
   read_csv("./data/MCI_baseline.csv", skip = 1) %>% 
   janitor::clean_names() %>% 
@@ -129,7 +141,6 @@ df_MCI_baseline =
     apoe4 = case_match(
       apoe4, 1 ~ "carrier", 0 ~ "non_carrier"),
   )
-    filter(df_MCI_baseline, age_at_onset != ".")
 
 df_MCI_amyloid = 
   read_csv("./data/mci_amyloid.csv", skip = 1) %>%
@@ -137,53 +148,72 @@ df_MCI_amyloid =
   mutate(id = `study_id`) %>% 
   select(-study_id)
   drop_na(df_MCI_amyloid)
-  
-
-df_MCI_combined = 
-  inner_join(df_MCI_baseline, df_MCI_amyloid)
-  nrow(df_MCI_combined)
-  drop_na(df_MCI_combined)
-
-write.csv(df_MCI_combined, file = "results/df_MCI_combined.csv")
 ```
 
-DISCUSSION QUESTIONS: 
+PROBLEM 3 DISCUSSION QUESTIONS: 
 
-1. Total participants recruited? =  483
+1. Total participants recruited?
+`r nrow(df_MCI_baseline)`
 
-2. Of these participants how many developed MCI?
+2. Of these participants, how many developed MCI?
 ```{r}
 filter(df_MCI_baseline, age_at_onset != ".")
+
+## Of the participants recruited, 97 developed MCI.
 ```
-3. Of the participants recruited, 97 developed MCI. 
 
-
-4. Avg. Baseline age?
+3. Avg. Baseline age?
 ```{r}
 mean(pull(df_MCI_baseline, current_age))
 ```
-= 65.04679
 
-
-5. What proportion of women are APOE4 carriers?
+4. What proportion of women are APOE4 carriers?
 ```{r}
 filter(df_MCI_baseline, sex != "male", apoe4 != "non_carrier")
+
+## 63 women are APOE4 carriers.
 ```
-Filtering the male and non-carriers out yield a total number of 63 women who are APOE4 carriers. 
+ 
+5. Comment on the steps on the import process and the features of the Amyloid dataset:
+
+Read in and cleaned the overall data set. Conditionally mutated the "study id" variable to just "id" so it can correspond to the participants of the data set, and also stay consistent with the baseline dataset. Then the "NA" values were dropped to create a cohesive data-frame.
 
 
-6. Comment on the steps on the import process and the features of the Amyloid dataset:
-Read in and cleaned the overall data set. Conditionally mutated the "study id" variable so it can correspond to the participants of the data set. Then the "NA" values were dropped to create a cohesive dataframe.
-
-
-7. Check whether some participants appear in only the baseline or amyloid datasets, and comment on your findings. Combine the demographic and biomarker datasets so that only participants who appear in both datasets are retained, and briefly describe the resulting dataset; export the result as a CSV to your data directory:
-
-Creating a consistent ID variable for both datasets and then combining them yields only those who are in both datasets. There are 337 participants in both after tidying up the data. 
-
-Exporting the result: 
+6. Check whether some participants appear in only the baseline or amyloid datasets, and comment on your findings. 
 
 ```{r}
+df_only_baseline =
+  df_MCI_baseline |>
+  anti_join(df_MCI_amyloid, by = "id")
+
+df_only_baseline
+## Study participants 14, 49, 92, 179, 268, 304, 389 and 412 are unique to the baseline dataset. 
+```
+```{r}
+
+df_only_amyloid = 
+  df_MCI_amyloid |>
+  anti_join(df_MCI_baseline, by = "id")
+
+df_only_amyloid
+## Study participants 484-495 are unique to only the amyloid dataset. 
+```
+
+7. Combine the demographic and biomarker datasets so that only participants who appear in both datasets are retained, and briefly describe the resulting dataset.
+
+```{r}
+df_MCI_combined = 
+  inner_join(df_MCI_baseline, df_MCI_amyloid, by = "id")
+
+df_MCI_combined
+
+## 475 participants appear in both datasets
+```
+
+8. Exporting the result as a csv to your data directory: 
+```{r}
 write.csv(df_MCI_combined, file = "results/df_MCI_combined.csv")
+
 ```
 
 

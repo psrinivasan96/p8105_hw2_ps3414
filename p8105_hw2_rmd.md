@@ -144,7 +144,7 @@ df_trash_wheel = read_excel("./data/trash_wheel.xlsx")
   janitor::clean_names(df_trash_wheel)
 ```
 
-    ## # A tibble: 548 × 16
+    ## # A tibble: 585 × 16
     ##    dumpster month year  date                weight_tons volume_cubic_yards
     ##       <dbl> <chr> <chr> <dttm>                    <dbl>              <dbl>
     ##  1        1 May   2014  2014-05-16 00:00:00        4.31                 18
@@ -157,10 +157,10 @@ df_trash_wheel = read_excel("./data/trash_wheel.xlsx")
     ##  8        8 May   2014  2014-05-28 00:00:00        3.7                  16
     ##  9        9 June  2014  2014-06-05 00:00:00        2.52                 14
     ## 10       10 June  2014  2014-06-11 00:00:00        3.76                 18
-    ## # ℹ 538 more rows
+    ## # ℹ 575 more rows
     ## # ℹ 10 more variables: plastic_bottles <dbl>, polystyrene <dbl>,
-    ## #   cigarette_butts <dbl>, glass_bottles <dbl>, grocery_bags <dbl>,
-    ## #   chip_bags <dbl>, sports_balls <dbl>, homes_powered <dbl>, x15 <lgl>,
+    ## #   cigarette_butts <dbl>, glass_bottles <dbl>, plastic_bags <dbl>,
+    ## #   wrappers <dbl>, sports_balls <dbl>, homes_powered <dbl>, x15 <lgl>,
     ## #   x16 <lgl>
 
 ``` r
@@ -170,7 +170,7 @@ df_trash_wheel = read_excel("./data/trash_wheel.xlsx")
     ##  [1] "Dumpster"             "Month"                "Year"                
     ##  [4] "Date"                 "weight_tons"          "Volume (cubic yards)"
     ##  [7] "Plastic Bottles"      "Polystyrene"          "Cigarette Butts"     
-    ## [10] "Glass Bottles"        "Grocery Bags"         "Chip Bags"           
+    ## [10] "Glass Bottles"        "Plastic Bags"         "Wrappers"            
     ## [13] "Sports Balls"         "Homes Powered*"       "...15"               
     ## [16] "...16"
 
@@ -185,7 +185,7 @@ df_trash_wheel = read_excel("./data/trash_wheel.xlsx")
     ## # ℹ 18 variables: Dumpster <dbl>, Month <chr>, Year <chr>, Date <dttm>,
     ## #   weight_tons <dbl>, Volume (cubic yards) <dbl>, Plastic Bottles <dbl>,
     ## #   Polystyrene <dbl>, Cigarette Butts <dbl>, Glass Bottles <dbl>,
-    ## #   Grocery Bags <dbl>, Chip Bags <dbl>, Sports Balls <dbl>,
+    ## #   Plastic Bags <dbl>, Wrappers <dbl>, Sports Balls <dbl>,
     ## #   Homes Powered* <dbl>, ...15 <lgl>, ...16 <lgl>, homes_powered <dbl>,
     ## #   trash_wheel <chr>
 
@@ -204,7 +204,7 @@ df_prof_wheel = read_excel("./data/trash_wheel.xlsx")
   janitor::clean_names(df_prof_wheel)
 ```
 
-    ## # A tibble: 548 × 16
+    ## # A tibble: 585 × 16
     ##    dumpster month year  date                weight_tons volume_cubic_yards
     ##       <dbl> <chr> <chr> <dttm>                    <dbl>              <dbl>
     ##  1        1 May   2014  2014-05-16 00:00:00        4.31                 18
@@ -217,10 +217,10 @@ df_prof_wheel = read_excel("./data/trash_wheel.xlsx")
     ##  8        8 May   2014  2014-05-28 00:00:00        3.7                  16
     ##  9        9 June  2014  2014-06-05 00:00:00        2.52                 14
     ## 10       10 June  2014  2014-06-11 00:00:00        3.76                 18
-    ## # ℹ 538 more rows
+    ## # ℹ 575 more rows
     ## # ℹ 10 more variables: plastic_bottles <dbl>, polystyrene <dbl>,
-    ## #   cigarette_butts <dbl>, glass_bottles <dbl>, grocery_bags <dbl>,
-    ## #   chip_bags <dbl>, sports_balls <dbl>, homes_powered <dbl>, x15 <lgl>,
+    ## #   cigarette_butts <dbl>, glass_bottles <dbl>, plastic_bags <dbl>,
+    ## #   wrappers <dbl>, sports_balls <dbl>, homes_powered <dbl>, x15 <lgl>,
     ## #   x16 <lgl>
 
 ``` r
@@ -230,7 +230,7 @@ df_prof_wheel = read_excel("./data/trash_wheel.xlsx")
     ##  [1] "Dumpster"             "Month"                "Year"                
     ##  [4] "Date"                 "weight_tons"          "Volume (cubic yards)"
     ##  [7] "Plastic Bottles"      "Polystyrene"          "Cigarette Butts"     
-    ## [10] "Glass Bottles"        "Grocery Bags"         "Chip Bags"           
+    ## [10] "Glass Bottles"        "Plastic Bags"         "Wrappers"            
     ## [13] "Sports Balls"         "Homes Powered*"       "...15"               
     ## [16] "...16"
 
@@ -245,7 +245,7 @@ df_prof_wheel = read_excel("./data/trash_wheel.xlsx")
     ## # ℹ 18 variables: Dumpster <dbl>, Month <chr>, Year <chr>, Date <dttm>,
     ## #   weight_tons <dbl>, Volume (cubic yards) <dbl>, Plastic Bottles <dbl>,
     ## #   Polystyrene <dbl>, Cigarette Butts <dbl>, Glass Bottles <dbl>,
-    ## #   Grocery Bags <dbl>, Chip Bags <dbl>, Sports Balls <dbl>,
+    ## #   Plastic Bags <dbl>, Wrappers <dbl>, Sports Balls <dbl>,
     ## #   Homes Powered* <dbl>, ...15 <lgl>, ...16 <lgl>, homes_powered <dbl>,
     ## #   trash_wheel <chr>
 
@@ -264,7 +264,7 @@ df_gwynn_wheel = read_excel("./data/trash_wheel.xlsx")
   janitor::clean_names(df_gwynn_wheel)
 ```
 
-    ## # A tibble: 548 × 16
+    ## # A tibble: 585 × 16
     ##    dumpster month year  date                weight_tons volume_cubic_yards
     ##       <dbl> <chr> <chr> <dttm>                    <dbl>              <dbl>
     ##  1        1 May   2014  2014-05-16 00:00:00        4.31                 18
@@ -277,10 +277,10 @@ df_gwynn_wheel = read_excel("./data/trash_wheel.xlsx")
     ##  8        8 May   2014  2014-05-28 00:00:00        3.7                  16
     ##  9        9 June  2014  2014-06-05 00:00:00        2.52                 14
     ## 10       10 June  2014  2014-06-11 00:00:00        3.76                 18
-    ## # ℹ 538 more rows
+    ## # ℹ 575 more rows
     ## # ℹ 10 more variables: plastic_bottles <dbl>, polystyrene <dbl>,
-    ## #   cigarette_butts <dbl>, glass_bottles <dbl>, grocery_bags <dbl>,
-    ## #   chip_bags <dbl>, sports_balls <dbl>, homes_powered <dbl>, x15 <lgl>,
+    ## #   cigarette_butts <dbl>, glass_bottles <dbl>, plastic_bags <dbl>,
+    ## #   wrappers <dbl>, sports_balls <dbl>, homes_powered <dbl>, x15 <lgl>,
     ## #   x16 <lgl>
 
 ``` r
@@ -290,7 +290,7 @@ df_gwynn_wheel = read_excel("./data/trash_wheel.xlsx")
     ##  [1] "Dumpster"             "Month"                "Year"                
     ##  [4] "Date"                 "weight_tons"          "Volume (cubic yards)"
     ##  [7] "Plastic Bottles"      "Polystyrene"          "Cigarette Butts"     
-    ## [10] "Glass Bottles"        "Grocery Bags"         "Chip Bags"           
+    ## [10] "Glass Bottles"        "Plastic Bags"         "Wrappers"            
     ## [13] "Sports Balls"         "Homes Powered*"       "...15"               
     ## [16] "...16"
 
@@ -305,7 +305,7 @@ df_gwynn_wheel = read_excel("./data/trash_wheel.xlsx")
     ## # ℹ 18 variables: Dumpster <dbl>, Month <chr>, Year <chr>, Date <dttm>,
     ## #   weight_tons <dbl>, Volume (cubic yards) <dbl>, Plastic Bottles <dbl>,
     ## #   Polystyrene <dbl>, Cigarette Butts <dbl>, Glass Bottles <dbl>,
-    ## #   Grocery Bags <dbl>, Chip Bags <dbl>, Sports Balls <dbl>,
+    ## #   Plastic Bags <dbl>, Wrappers <dbl>, Sports Balls <dbl>,
     ## #   Homes Powered* <dbl>, ...15 <lgl>, ...16 <lgl>, homes_powered <dbl>,
     ## #   trash_wheel <chr>
 
@@ -316,15 +316,27 @@ df_combined_trash =
   bind_rows(df_trash_wheel, df_prof_wheel, df_gwynn_wheel)
 ```
 
-Description: The combination of these 3 datasets inform us how much
-trash was collected all together between Mr. Trash Wheel, Professor
-Trash wheel and Gwynnda Trash Wheel.
+PROBLEM 2 DISCUSSION:
+
+This data shows us a combination of all the trash collected between the
+3 datasets. Also tells us how much total weight of trash was collected
+by Mr. Trash Wheel, Professor Trash Wheel and the Gwynnda Trash Wheel
+collectively. Additionally, it also shows all the different material
+that was collected.
+
+1.  Number of observations in the resulting dataset: 1755
+
+2.  Number of key variables: 16
+
+3.  Total weight collected by Professor Trash wheel: 3750.2
 
 ### Problem 3
 
 READ, TIDY AND COMBINE THE MCI BASELINE AND AMYLOID DATASETS:
 
 ``` r
+## Cleaning: deleted the first row, changed the sex and apoe variables into non-numerical and removed NA. 
+
 df_MCI_baseline = 
   read_csv("./data/MCI_baseline.csv", skip = 1) %>% 
   janitor::clean_names() %>% 
@@ -344,25 +356,6 @@ df_MCI_baseline =
     ## 
     ## ℹ Use `spec()` to retrieve the full column specification for this data.
     ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-
-``` r
-    filter(df_MCI_baseline, age_at_onset != ".")
-```
-
-    ## # A tibble: 97 × 6
-    ##       id current_age sex    education apoe4       age_at_onset
-    ##    <dbl>       <dbl> <chr>      <dbl> <chr>       <chr>       
-    ##  1     3        62.5 male          16 carrier     66.8        
-    ##  2     5        66   male          16 non_carrier 68.7        
-    ##  3     7        66.5 male          18 non_carrier 74          
-    ##  4    13        63.1 male          12 carrier     69          
-    ##  5    14        58.4 female        20 non_carrier 66.2        
-    ##  6    18        67.8 male          16 non_carrier 69.8        
-    ##  7    22        67.3 female        20 carrier     74.6        
-    ##  8    26        64.8 female        20 carrier     71.1        
-    ##  9    30        66.3 female        12 non_carrier 73.1        
-    ## 10    39        68.3 female        16 carrier     70.2        
-    ## # ℹ 87 more rows
 
 ``` r
 df_MCI_amyloid = 
@@ -400,48 +393,11 @@ df_MCI_amyloid =
     ## 10 0.114137255 0.107093264 0.110872562 0.108982605 0.106873903    18
     ## # ℹ 337 more rows
 
-``` r
-df_MCI_combined = 
-  inner_join(df_MCI_baseline, df_MCI_amyloid)
-```
+PROBLEM 3 DISCUSSION QUESTIONS:
 
-    ## Joining with `by = join_by(id)`
+1.  Total participants recruited? 483
 
-``` r
-  nrow(df_MCI_combined)
-```
-
-    ## [1] 475
-
-``` r
-  drop_na(df_MCI_combined)
-```
-
-    ## # A tibble: 337 × 11
-    ##       id current_age sex    education apoe4  age_at_onset baseline time_2 time_4
-    ##    <dbl>       <dbl> <chr>      <dbl> <chr>  <chr>        <chr>    <chr>  <chr> 
-    ##  1     2        65.6 female        20 carri… .            0.10748… 0.109… 0.109…
-    ##  2     4        69.8 female        16 non_c… .            0.10925… 0.108… 0.110…
-    ##  3     5        66   male          16 non_c… 68.7         0.10795… 0.112… 0.115…
-    ##  4     6        62.5 male          16 non_c… .            0.11242… 0.112… 0.111…
-    ##  5    11        69.5 female        16 non_c… .            0.10911… 0.109… 0.111…
-    ##  6    12        66.2 female        18 non_c… .            0.11204… 0.114… 0.109…
-    ##  7    13        63.1 male          12 carri… 69           0.11030… 0.108… 0.108…
-    ##  8    16        64.9 female        16 non_c… .            0.11021… 0.113… 0.111…
-    ##  9    17        65   female        18 non_c… .            0.10839… 0.113… 0.105…
-    ## 10    18        67.8 male          16 non_c… 69.8         0.11413… 0.107… 0.110…
-    ## # ℹ 327 more rows
-    ## # ℹ 2 more variables: time_6 <chr>, time_8 <chr>
-
-``` r
-write.csv(df_MCI_combined, file = "results/df_MCI_combined.csv")
-```
-
-DISCUSSION QUESTIONS:
-
-1.  Total participants recruited? = 483
-
-2.  Of these participants how many developed MCI?
+2.  Of these participants, how many developed MCI?
 
 ``` r
 filter(df_MCI_baseline, age_at_onset != ".")
@@ -462,9 +418,11 @@ filter(df_MCI_baseline, age_at_onset != ".")
     ## 10    39        68.3 female        16 carrier     70.2        
     ## # ℹ 87 more rows
 
-3.  Of the participants recruited, 97 developed MCI.
+``` r
+## Of the participants recruited, 97 developed MCI.
+```
 
-4.  Avg. Baseline age?
+3.  Avg. Baseline age?
 
 ``` r
 mean(pull(df_MCI_baseline, current_age))
@@ -472,9 +430,7 @@ mean(pull(df_MCI_baseline, current_age))
 
     ## [1] 65.04679
 
-= 65.04679
-
-5.  What proportion of women are APOE4 carriers?
+4.  What proportion of women are APOE4 carriers?
 
 ``` r
 filter(df_MCI_baseline, sex != "male", apoe4 != "non_carrier")
@@ -495,27 +451,106 @@ filter(df_MCI_baseline, sex != "male", apoe4 != "non_carrier")
     ## 10    52        63.2 female        16 carrier .           
     ## # ℹ 53 more rows
 
-Filtering the male and non-carriers out yield a total number of 63 women
-who are APOE4 carriers.
+``` r
+## 63 women are APOE4 carriers.
+```
 
-6.  Comment on the steps on the import process and the features of the
-    Amyloid dataset: Read in and cleaned the overall data set.
-    Conditionally mutated the “study id” variable so it can correspond
-    to the participants of the data set. Then the “NA” values were
-    dropped to create a cohesive dataframe.
+5.  Comment on the steps on the import process and the features of the
+    Amyloid dataset:
 
-7.  Check whether some participants appear in only the baseline or
-    amyloid datasets, and comment on your findings. Combine the
-    demographic and biomarker datasets so that only participants who
-    appear in both datasets are retained, and briefly describe the
-    resulting dataset; export the result as a CSV to your data
-    directory:
+Read in and cleaned the overall data set. Conditionally mutated the
+“study id” variable to just “id” so it can correspond to the
+participants of the data set, and also stay consistent with the baseline
+dataset. Then the “NA” values were dropped to create a cohesive
+data-frame.
 
-Creating a consistent ID variable for both datasets and then combining
-them yields only those who are in both datasets. There are 337
-participants in both after tidying up the data.
+6.  Check whether some participants appear in only the baseline or
+    amyloid datasets, and comment on your findings.
 
-Exporting the result:
+``` r
+df_only_baseline =
+  df_MCI_baseline |>
+  anti_join(df_MCI_amyloid, by = "id")
+
+df_only_baseline
+```
+
+    ## # A tibble: 8 × 6
+    ##      id current_age sex    education apoe4       age_at_onset
+    ##   <dbl>       <dbl> <chr>      <dbl> <chr>       <chr>       
+    ## 1    14        58.4 female        20 non_carrier 66.2        
+    ## 2    49        64.7 male          16 non_carrier 68.4        
+    ## 3    92        68.6 female        20 non_carrier .           
+    ## 4   179        68.1 male          16 non_carrier .           
+    ## 5   268        61.4 female        18 carrier     67.5        
+    ## 6   304        63.8 female        16 non_carrier .           
+    ## 7   389        59.3 female        16 non_carrier .           
+    ## 8   412        67   male          16 carrier     .
+
+``` r
+## Study participants 14, 49, 92, 179, 268, 304, 389 and 412 are unique to the baseline dataset. 
+```
+
+``` r
+df_only_amyloid = 
+  df_MCI_amyloid |>
+  anti_join(df_MCI_baseline, by = "id")
+
+df_only_amyloid
+```
+
+    ## # A tibble: 12 × 6
+    ##    baseline    time_2      time_4      time_6      time_8         id
+    ##    <chr>       <chr>       <chr>       <chr>       <chr>       <dbl>
+    ##  1 0.11139422  0.110936838 0.109182887 0.110607585 0.107057538   484
+    ##  2 0.106042813 0.105158363 0.107758828 0.107281321 0.106181816   485
+    ##  3 0.109161071 0.114634379 <NA>        0.110035156 0.107234758   486
+    ##  4 0.110821971 0.107791347 0.109855229 0.110951271 0.105861634   487
+    ##  5 0.110418756 0.111994328 0.113132987 0.108902038 0.109449907   488
+    ##  6 0.11477384  0.113322128 0.115109381 0.116004489 0.112260161   489
+    ##  7 0.111762756 0.109627815 0.111492905 0.110104053 <NA>          490
+    ##  8 0.116934974 0.113763228 0.111358448 0.110509854 0.110541984   491
+    ##  9 0.109757685 0.109912273 0.110672861 0.109064952 0.109161341   492
+    ## 10 0.108357146 0.108161281 0.109491179 0.104448142 0.108636703   493
+    ## 11 0.116669151 0.109711076 0.112133216 0.111399722 0.108836759   494
+    ## 12 Na          0.105142354 0.108149625 0.105918659 0.102512562   495
+
+``` r
+## Study participants 484-495 are unique to only the amyloid dataset. 
+```
+
+7.  Combine the demographic and biomarker datasets so that only
+    participants who appear in both datasets are retained, and briefly
+    describe the resulting dataset.
+
+``` r
+df_MCI_combined = 
+  inner_join(df_MCI_baseline, df_MCI_amyloid, by = "id")
+
+df_MCI_combined
+```
+
+    ## # A tibble: 475 × 11
+    ##       id current_age sex    education apoe4  age_at_onset baseline time_2 time_4
+    ##    <dbl>       <dbl> <chr>      <dbl> <chr>  <chr>        <chr>    <chr>  <chr> 
+    ##  1     1        63.1 female        16 carri… .            0.11054… <NA>   0.109…
+    ##  2     2        65.6 female        20 carri… .            0.10748… 0.109… 0.109…
+    ##  3     3        62.5 male          16 carri… 66.8         0.10608… 0.108… 0.106…
+    ##  4     4        69.8 female        16 non_c… .            0.10925… 0.108… 0.110…
+    ##  5     5        66   male          16 non_c… 68.7         0.10795… 0.112… 0.115…
+    ##  6     6        62.5 male          16 non_c… .            0.11242… 0.112… 0.111…
+    ##  7     7        66.5 male          18 non_c… 74           0.11224… <NA>   0.104…
+    ##  8     8        67.2 female        18 non_c… .            0.10956… 0.109… <NA>  
+    ##  9     9        66.7 female        16 non_c… .            0.11210… 0.109… 0.108…
+    ## 10    10        64.1 female        18 non_c… .            0.11160… 0.111… <NA>  
+    ## # ℹ 465 more rows
+    ## # ℹ 2 more variables: time_6 <chr>, time_8 <chr>
+
+``` r
+## 475 participants appear in both datasets
+```
+
+8.  Exporting the result as a csv to your data directory:
 
 ``` r
 write.csv(df_MCI_combined, file = "results/df_MCI_combined.csv")
